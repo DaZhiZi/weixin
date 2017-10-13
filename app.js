@@ -27,25 +27,6 @@ app.use(bodyParser.json())
 //    next()
 //})
 
-const registerRoutes = (app, routes) => {
-    for (var i = 0; i < routes.length; i++) {
-        var route = routes[i]
-        app[route.method](route.path, route.func)
-    }
-}
-
-var _routeFunc = function () {
-    const routePath = './route'
-    var names = fs.readdirSync(routePath)
-    for (var i = 0; i < names.length; i++) {
-        var routeName = './route/' + names[i]
-        const routeIndex = require(routeName)
-        registerRoutes(app, routeIndex.routes)
-    }
-}
-
-_routeFunc()
-
 //微信订阅号的配置信息
 let config = {
     wechat: {
@@ -80,6 +61,26 @@ app.use(function (request, response) {
         response.send("不是来自微信的请求")
     }
 })
+
+const registerRoutes = (app, routes) => {
+    for (var i = 0; i < routes.length; i++) {
+        var route = routes[i]
+        app[route.method](route.path, route.func)
+    }
+}
+
+var _routeFunc = function () {
+    const routePath = './route'
+    var names = fs.readdirSync(routePath)
+    for (var i = 0; i < names.length; i++) {
+        var routeName = './route/' + names[i]
+        const routeIndex = require(routeName)
+        registerRoutes(app, routeIndex.routes)
+    }
+}
+
+_routeFunc()
+
 
 var server = app.listen(3000, function () {
     var host = server.address().address
