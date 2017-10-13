@@ -74,17 +74,17 @@ app.use('*', wechat(config, function (req, res, next) {
     log('message', message)
     if (message.FromUserName === 'o0EDM09LXP78z56pGulRjGY6wFsM') {
         // 回复屌丝(普通回复)
-        res.reply('hehe');
+        res.send('hehe');
         log('hehe之后')
     } else if (message.FromUserName === 'text') {
         //你也可以这样回复text类型的信息
-        res.reply({
+        res.send({
             content: 'text object',
             type: 'text'
         });
     } else if (message.FromUserName === 'hehe') {
         // 回复一段音乐
-        res.reply({
+        res.send({
             type: "music",
             content: {
                 title: "来段音乐吧",
@@ -96,7 +96,7 @@ app.use('*', wechat(config, function (req, res, next) {
         });
     } else {
         // 回复高富帅(图文回复)
-        res.reply([
+        res.send([
             {
                 title: '你来我家接我吧',
                 description: '这是女神与高富帅之间的对话',
