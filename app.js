@@ -61,9 +61,9 @@ app.use(function (request, response, next) {
     //如果相等返回echostr
     if (sha1Str === signature) {
         //将echostr返回给微信服务器
-        response.send(echostr)
+        //response.send(echostr)
     } else {
-        response.send("不是来自微信的请求")
+        //response.send("不是来自微信的请求")
     }
     next()
 })
