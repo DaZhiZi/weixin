@@ -73,59 +73,12 @@ app.use('*', wechat(config, function (req, res, next) {
     var message = req.weixin;
     log('message', message)
     if (message.Content === 'qq') {
+        log('前面')
         // 回复屌丝(普通回复)
-        res.send('hehe');
+        res.reply('hehe');
         log('hehe之后')
-    } else if (message.MsgType === 'text') {
-        //你也可以这样回复text类型的信息
-        res.send({
-            content: 'text object',
-            type: 'text'
-        });
-    } else if (message.FromUserName === 'hehe') {
-        // 回复一段音乐
-        res.send({
-            type: "music",
-            content: {
-                title: "来段音乐吧",
-                description: "一无所有",
-                musicUrl: "http://mp3.com/xx.mp3",
-                hqMusicUrl: "http://mp3.com/xx.mp3",
-                thumbMediaId: "thisThumbMediaId"
-            }
-        });
-    } else {
-        // 回复高富帅(图文回复)
-        res.send([
-            {
-                title: '你来我家接我吧',
-                description: '这是女神与高富帅之间的对话',
-                picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
-                url: 'http://nodeapi.cloudfoundry.com/'
-            }
-        ]);
     }
 }));
-
-const registerRoutes = (app, routes) => {
-    for (var i = 0; i < routes.length; i++) {
-        var route = routes[i]
-        app[route.method](route.path, route.func)
-    }
-}
-
-var _routeFunc = function () {
-    const routePath = './route'
-    var names = fs.readdirSync(routePath)
-    for (var i = 0; i < names.length; i++) {
-        var routeName = './route/' + names[i]
-        const routeIndex = require(routeName)
-        registerRoutes(app, routeIndex.routes)
-    }
-}
-
-//_routeFunc()
-
 
 var server = app.listen(3000, function () {
     var host = server.address().address
