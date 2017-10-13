@@ -71,10 +71,11 @@ app.use(function (request, response, next) {
 app.use('*', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
-    log('message', message, message.FromUserName)
-    if (message.FromUserName === 'diaosi') {
+    log('message', message)
+    if (message.FromUserName === 'o0EDM09LXP78z56pGulRjGY6wFsM') {
         // 回复屌丝(普通回复)
         res.reply('hehe');
+        log('hehe之后')
     } else if (message.FromUserName === 'text') {
         //你也可以这样回复text类型的信息
         res.reply({
