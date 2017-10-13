@@ -2,8 +2,8 @@ var fs = require('fs')
 var express = require('express')
 var bodyParser = require('body-parser')
 var session = require('cookie-session')
-var moment = require('moment');
-let sha1=require("sha1");
+var moment = require('moment')
+let sha1 = require('sha1')
 
 var date = moment().format('HH:mm:ss')
 var log = console.log.bind(console, date + ': ')
@@ -49,40 +49,38 @@ _routeFunc()
 //微信订阅号的配置信息
 let config = {
     wechat: {
-        appID: "wx32f55c167a333096",
-        appsecret: "c1c19e6d83ec0550f7865dfb79accbd0",
+        appID    : 'wx32f55c167a333096',
+        appsecret: 'c1c19e6d83ec0550f7865dfb79accbd0',
         //这里你得填写你自己设置的Token值
-        token: "yongzhi",
+        token    : 'yongzhi',
     }
-};
+}
 
-app.use(function(re){
+app.use(function (request, response) {
     //ctx.query获取请求中携带的参数
-    let token = config.wechat.token;
+    let token = config.wechat.token
     //获取请求中的signature
-    let signature=request.query.signature;
+    let signature = request.query.signature
     //获取请求中的timestamp
-    let timestamp=request.query.timestamp;
+    let timestamp = request.query.timestamp
     //获取请求中的nonce
-    let nonce=request.query.nonce;
+    let nonce = request.query.nonce
     //获取请求中的echostr
-    let echostr=request.query.echostr;
+    let echostr = request.query.echostr
     //将Token，timestamp，nonce按字典排序,排序后链接成一个字符串
-    let str=[token,timestamp,nonce].sort().join("");
+    let str = [token, timestamp, nonce].sort().join('')
     //使用sha1模块进行sha1加密
-    let sha1Str=sha1(str);
+    let sha1Str = sha1(str)
     //判断加密后的字符串与请求中signature是否相等
     //如果相等返回echostr
-    if(sha1Str === signature){
+    if (sha1Str === signature) {
         //将echostr返回给微信服务器
-        response.body=echostr;
+        response.body = echostr
     }
-    else{
-        response.body="wrong";
+    else {
+        response.body = 'wrong'
     }
-    
 })
-
 
 var server = app.listen(3000, function () {
     var host = server.address().address
