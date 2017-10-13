@@ -1,0 +1,26 @@
+.index-search {
+	position: absolute;
+	z-index: 10;
+	width: 80%;
+	top: 5px;
+	left:20%;
+}
+
+.mui-search input[type=search] {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+#slider {
+	height: 200px;
+}
+.mui-table-view .mui-media-object {
+	line-height: 60px;
+	max-width: 60px;
+	height: 60px;
+}
+.mui-search .mui-placeholder {
+	height: 25px;
+	line-height: 25px;
+}
+input[type=search] {
+	height: 25px;
+}
