@@ -65,6 +65,7 @@ app.use(function (request, response) {
     } else {
         response.send("不是来自微信的请求")
     }
+    next()
 })
 
 app.use('*', wechat(config, function (req, res, next) {
