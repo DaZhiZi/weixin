@@ -38,7 +38,6 @@ let config = {
     },
     token: 'yongzhi',
     appid: 'wx32f55c167a333096',
-    encodingAESKey: 'encodinAESKey',
     checkSignature: true // 可选，默认为true。
 }
 app.use(express.query());
