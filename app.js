@@ -77,6 +77,8 @@ app.use('*', wechat(config, function (req, res, next) {
         // 回复屌丝(普通回复)
         res.reply('hehe');
         log('hehe之后')
+    } else {
+        res.reply('ooooo');
     }
 }));
 
