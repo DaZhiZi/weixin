@@ -42,7 +42,7 @@ let config = {
 }
 app.use(express.query());
 
-app.use(function (request, response) {
+app.use(function (request, response, next) {
     //ctx.query获取请求中携带的参数
     let token = config.wechat.token
     //获取请求中的signature
