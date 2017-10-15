@@ -49,14 +49,16 @@ app.use('*', wechat(config, function (req, res, next) {
     if (message.Content === 'diaosi') {
         // 回复屌丝(普通回复)
         res.reply('hehe');
-    } else if (message.FromUserName === 'text') {
+    } else if (message.Content === '图片') {
         //你也可以这样回复text类型的信息
         res.reply({
-            content: 'text object',
-            type: 'text'
+            type: "image",
+            content: {
+                mediaId: 'uoqSxnTE1QEi1bMP4NgESReqXUn8XaclRfmDEZO7DNs6bg7RiFiYmDq3eCKmBJQ6'
+            }
         });
     } else if (message.Content === 'hehe') {
-        // 回复一段音乐
+        // 回复一段音乐，似乎该功能不可用
         res.reply({
             type: "music",
             content: {
