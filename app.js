@@ -46,9 +46,9 @@ app.use('*', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
     log('message', message)
-    if (message.Content === 'diaosi') {
+    if (message.Content === '文字') {
         // 回复屌丝(普通回复)
-        res.reply('hehe');
+        res.reply('这是一段文字消息');
     } else if (message.Content === '图片') {
         //你也可以这样回复text类型的信息
         res.reply({
@@ -61,22 +61,14 @@ app.use('*', wechat(config, function (req, res, next) {
         // 回复一段音乐，似乎该功能不可用
         res.reply([
             {
-                title: '你来我家接我吧',
-                description: '这是女神与高富帅之间的对话',
-                picurl: 'https://blog.humingzhen.cc/xin.jpg',
-                url: 'https://blog.humingzhen.cc'
+                title: '这是图文消息',
+                description: '图文消息的描述',
+                picurl: 'https://wx.humingzhen.cc/xin.jpg',
+                url: 'https://wx.humingzhen.cc'
             }
         ]);
     } else {
-        // 回复高富帅(图文回复)
-        res.reply([
-            {
-                title: '你来我家接我吧',
-                description: '这是女神与高富帅之间的对话',
-                picurl: 'http://nodeapi.cloudfoundry.com/qrcode.jpg',
-                url: 'http://nodeapi.cloudfoundry.com/'
-            }
-        ]);
+        res.reply('暂时会找到与该消息相关的信息，请输入其他指令。');
     }
 }));
 
