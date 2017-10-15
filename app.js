@@ -63,15 +63,18 @@ app.use('*', wechat(config, function (req, res, next) {
             {
                 title: '这是图文消息',
                 description: '图文消息的描述',
-                picurl: 'https://wx.humingzhen.cc/xin.jpg',
+                picurl: 'https://wx.humingzhen.cc/images/xin.jpg',
                 url: 'https://wx.humingzhen.cc'
             }
         ]);
     } else {
         res.reply('暂时会找到与该消息相关的信息，请输入其他指令。');
     }
+    next()
 }));
-
+app.get('/', function (req, res) {
+    res.send('来自首页的问候。')
+})
 var server = app.listen(3000, function () {
     var host = server.address().address
     var port = server.address().port
