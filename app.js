@@ -57,18 +57,16 @@ app.use('*', wechat(config, function (req, res, next) {
                 mediaId: 'uoqSxnTE1QEi1bMP4NgESReqXUn8XaclRfmDEZO7DNs6bg7RiFiYmDq3eCKmBJQ6'
             }
         });
-    } else if (message.Content === 'hehe') {
+    } else if (message.Content === '图文') {
         // 回复一段音乐，似乎该功能不可用
-        res.reply({
-            type: "music",
-            content: {
-                title: "来段音乐吧",
-                description: "一无所有",
-                musicUrl: "http://mp3.com/xx.mp3",
-                hqMusicUrl: "http://mp3.com/xx.mp3",
-                thumbMediaId: "thisThumbMediaId"
+        res.reply([
+            {
+                title: '你来我家接我吧',
+                description: '这是女神与高富帅之间的对话',
+                picurl: 'https://blog.humingzhen.cc/xin.jpg',
+                url: 'https://blog.humingzhen.cc'
             }
-        });
+        ]);
     } else {
         // 回复高富帅(图文回复)
         res.reply([
